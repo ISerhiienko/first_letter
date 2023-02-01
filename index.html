@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find letter</title>
+    <style>
+      body {
+        font-family: "Times New Roman", Times, serif;
+      }
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .form__label {
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+      .form__button {
+        margin-top: 10px;
+        padding: 10px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .form_textarea {
+        resize: none;
+        padding: 10px;
+      }
+      .output {
+        color: green;
+        font-size: 30px;
+        font-weight: 700;
+      }
+      .output-wrapper {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        font-size: 30px;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form class="form" action="">
+        <label class="form__label" for="textarea">Type text below: </label>
+        <textarea
+          id="textarea"
+          class="form_textarea"
+          name="textarea"
+          id=""
+          cols="30"
+          rows="10"
+        ></textarea>
+        <button class="form__button">Find letter</button>
+      </form>
+      <div class="output-wrapper">
+        The first letter is: &nbsp;
+        <div class="output"></div>
+      </div>
+    </div>
+    <script>
+      let btn = document.querySelector(".form__button");
+      let output = document.querySelector(".output");
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        let s = document.querySelector(".form_textarea").value;
+
+        output.innerHTML = firstNonRepeatedCharacter(s);
+      });
+
+      function firstNonRepeatedCharacter(s) {
+        for (let i = 0; i < s.length; i++) {
+          let j = s.charAt(i);
+
+          if (s.indexOf(j) == s.lastIndexOf(j)) {
+            return j.toLowerCase();
+          }
+        }
+        return null;
+      }
+    </script>
+  </body>
+</html>
